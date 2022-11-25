@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<locale.h>
+#include<math.h>
+double fa(double x)
+{
+	double y;
+	if (x > 3) y = 1 / (pow(x, 3) + 3);
+	else y = pow(x, 2) - 3 * x + 9;
+	return y;
+
+}
+double fb(double x)
+{
+	double y = x * exp(sin(pow(x, 2)));
+	return y;
+}
+double sinx(double x1)
+{
+	double y1 = sin(x1);
+	return y1;
+}
+double sin_n(double x1, int N)
+{
+	double y1;
+	for (int k = 2; k < (N - 1); k++)
+	{
+		for (int n = 2 * k - 1; n > 1; n--)
+			y1 = x1 + pow(-1, k - 1) * (pow(x1, 2 * k - 1) / n * (n - 1));
+		return y1;
+	}
+}
+double sin_eps(double x1, double eps)
+{
+	double y1;
+	for (int b = 2; b > eps; b++)
+	{
+		for (int g = 2 * b - 1; g > 1; g--)
+			y1 = x1 + pow(-1, b - 1) * (pow(x1, 2 * b - 1) / g * (g - 1));
+		return y1;
+	}
+}
+
+void main()
+
+{
+	double x, x1, N, eps;
+	setlocale(LC_ALL, "RUS");
+	puts("Задание 1");
+	puts("Введите х:");
+	scanf_s("%lf", &x);
+	printf("fa(x)=%lf , fb(x)=%lf \n", fa(x), fb(x));
+	printf("Произведение %lf\n Разность квадратов %lf\n Удвоенная сумма %lf\n", fa(x) * fb(x), pow(fa(x), 2) - pow(fb(x), 2), 2 * (fa(x) + fb(x)));
+
+	system("pause");
+	system("cls");
+
+	puts("Задание 2");
+	puts("Введите х:");
+	scanf_s("%lf", &x1);
+	puts("Введите N-число суммируемых k-х членов ряда:");
+	scanf_s("%lf", &N);
+	puts("Введите точность вычисления:");
+	scanf_s("%lf", &eps);
+	printf("Результаты решения:\n 1 способом %lf\n 2 способом %lf\n 3 способом %lf\n", sinx(x1), sin_n(x1, N), sin_eps(x1, eps));
+}
+
+
