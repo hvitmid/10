@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <locale.h>
+#include <math.h>
+
+float area_rectangle(float d1,float d2)
+{
+	float S = 0.5*d1*d2;
+	return S;
+}
+
+void draw_rectangle(int a2, char c)
+{
+	int i, j;
+	for (i = 0; i < a2; i++)
+	{
+		for (j = a2; j > i; j--)
+			printf(" ");
+		for (j = 0; j < i; j++)
+			printf(" %c", c);
+		for (j = 0; j < i; j++)
+			printf(" %c", c);
+		putchar('\n');
+	}
+	for (i = 0; i < a2; i++)
+	{
+		for (j = 0; j < i; j++)
+			printf(" ");
+		for (j = a2; j > i; j--)
+			printf(" %c", c);
+		for (j = a2; j > i; j--)
+			printf(" %c", c);
+
+		putchar('\n');
+
+	}
+}
+
+void name()
+{
+	printf("Ромбоид");
+	return 0;
+}
+void main()
+{
+	int d, a2, a3;
+	float d1, d2;
+	char c;
+	setlocale(LC_ALL, "RUS");
+	puts("Выберите действие и введите нужную цифру:\n 1 - Рассчитать площадь\n 2 - Вывести определение фигуры \n 3 - Нарисовать фигуру");
+	scanf_s("%d", &d);
+	switch (d)
+	{
+	case 1:
+		puts("Введите длину диагоналей:");
+		scanf_s("%f %f", &d1, &d2);
+		printf("Площадь фигуры - %.0f", area_rectangle(d1, d2));
+		break;
+	case 2:
+		printf("Определение фигуры:\n");
+		name();
+		break;
+	case 3:
+		puts("Введите меньшую сторону:");
+		scanf_s("%d", &a2);
+		puts("Введите символ:");
+		scanf_s(" %c", &c);
+		draw_rectangle(a2, c);
+
+	}
+}
